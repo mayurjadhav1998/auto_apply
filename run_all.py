@@ -1,0 +1,18 @@
+import subprocess
+
+commands = [
+    "python -m pip install --upgrade pip",
+    "pip install selenium webdriver-manager",
+    "pip install --upgrade tensorflow",
+    "python 0_1yrs.py",
+    "python 1_3yrs.py",
+    "python backend_dev0_1.py",
+    "python backend_dev1_3.py",
+    "python frontend_dev0_1.py",
+    "python frontend_dev1_3.py",
+    "python python_dev0_1.py",
+    "python python_dev1_3.py"
+]
+
+for cmd in commands:
+    subprocess.run(cmd, shell=True, check=True)
