@@ -24,4 +24,4 @@ Ensure ChromeDriver is compatible with your version of Chrome.
 Update the script with your registered email and password for the Hirist platform.
 2. Run the script using Python:
    ```bash
-    python combined_script.py
+    python run_all.py
