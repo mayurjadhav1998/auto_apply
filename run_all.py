@@ -15,7 +15,7 @@ commands = [
     "python ROR_0_1yrs.py",
     "python ROR_1_3yrs.py",
     "python django_0_1.py",
-    "python django_1_3.py
+    "python django_1_3.py"
     
 ]
 
