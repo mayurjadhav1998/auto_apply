@@ -19,6 +19,7 @@ driver.get('https://hirist.tech')
 
 # Click on 'Jobseeker Login'
 jobseeker_login_button = driver.find_element(By.LINK_TEXT, 'Jobseeker Login')
+driver.execute_script("arguments[0].scrollIntoView();", jobseeker_login_button)  # Scroll into view
 jobseeker_login_button.click()
 
 # Wait for login page to load
@@ -26,6 +27,7 @@ time.sleep(2)
 
 # Click on 'Sign in'
 sign_in_button = driver.find_element(By.XPATH, "//span[text()='Sign In']")
+driver.execute_script("arguments[0].scrollIntoView();", sign_in_button)  # Scroll into view
 sign_in_button.click()
 
 # Wait for sign-in form to load
@@ -33,10 +35,12 @@ time.sleep(2)
 
 # Enter Email Address
 email_field = driver.find_element(By.XPATH, '//input[@placeholder="Enter your registered email id"]')
+driver.execute_script("arguments[0].scrollIntoView();", email_field)  # Scroll into view
 email_field.send_keys('mayurjadhav1998.mj@gmail.com')
 
 # Enter Password
 password_field = driver.find_element(By.XPATH, '//input[@placeholder="Enter your password"]')
+driver.execute_script("arguments[0].scrollIntoView();", password_field)  # Scroll into view
 password_field.send_keys('Mayur@2812')
 
 # Submit the login form
@@ -45,59 +49,64 @@ password_field.send_keys(Keys.RETURN)
 # Wait for the main page to load after login
 time.sleep(5)
 
-# Hover over 'Backend Developer' and click 'Django'
+# Hover over 'Backend Developer' and click 'Ruby on Rails'
 try:
     backend_developer_link = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '/c/backend-developer-jobs.html')]")
+        EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '/c/backend-developer-jobs.html')]"))
     )
-    # Hover over 'Backend Developer'
+    driver.execute_script("arguments[0].scrollIntoView();", backend_developer_link)  # Scroll into view
     actions = ActionChains(driver)
     actions.move_to_element(backend_developer_link).perform()
     print("Hovered over 'Backend Developer'.")
     time.sleep(2)
 
-    # Click 'Django' link
-    django_link = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//a[contains(@href, '/k/django-jobs.html')]")
+    # Click 'Ruby on Rails' link
+    ruby_on_rails_link = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, "//a[contains(@href, '/k/ruby-on-rails-jobs.html')]"))
     )
-    django_link.click()
-    print("Navigated to Django jobs.")
+    driver.execute_script("arguments[0].scrollIntoView();", ruby_on_rails_link)  # Scroll into view
+    ruby_on_rails_link.click()
+    print("Navigated to Ruby on Rails jobs.")
     time.sleep(3)  # Allow time for the page to load
 except TimeoutException:
-    print("Failed to navigate to Django jobs.")
+    print("Failed to navigate to Ruby on Rails jobs.")
 
-# Tap on 'Any Exp. Level' dropdown and select '1 - 3 yrs'
+# Tap on 'Any Exp. Level' dropdown and select '0 - 1 yrs'
 try:
     dropdown_parent = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//div[@class='sc-jlyJG eMQnym']")
+        EC.element_to_be_clickable((By.XPATH, "//div[@class='sc-jlyJG eMQnym']"))
     )
+    driver.execute_script("arguments[0].scrollIntoView();", dropdown_parent)  # Scroll into view
     dropdown_parent.click()
     time.sleep(1)
 
     zero_one_year_option = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//li[@value='1 - 3 yrs']")
+        EC.element_to_be_clickable((By.XPATH, "//li[@value='0 - 1 yrs']"))
     )
+    driver.execute_script("arguments[0].scrollIntoView();", zero_one_year_option)  # Scroll into view
     zero_one_year_option.click()
-    print("Experience level '1 - 3 yrs' selected.")
+    print("Experience level '0 - 1 yrs' selected.")
 except TimeoutException:
-    print("Failed to select experience level '1 - 3 yrs'.")
+    print("Failed to select experience level '0 - 1 yrs'.")
 
 # Click the 'Apply' button
 try:
     apply_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[@value='Filter' and text()='Apply']")
-    ) 
+        EC.element_to_be_clickable((By.XPATH, "//button[@value='Filter' and text()='Apply']"))
+    )
     apply_button.click()
     print("Filters applied successfully.")
     time.sleep(5)  # Wait for the page to reload or update filters
-except TimeoutException:
-    print("Failed to click the 'Apply' button.")
+
+    # Scroll down 15 times with an interval of 2 seconds
     for _ in range(15):
         driver.execute_script("window.scrollBy(0, window.innerHeight);")  # Scroll down by one viewport height
         print("Scrolled down.")
         time.sleep(2)
 except TimeoutException:
     print("Failed to click the 'Apply' button.")
+
+
 
 # Select up to 50 items and click 'Apply All'
 try:
@@ -106,14 +115,13 @@ try:
         if index < 50:
             driver.execute_script("arguments[0].scrollIntoView();", item)  # Scroll into view
             driver.execute_script("arguments[0].click();", item)  # Click via JavaScript
-            print(f"Checkbox {index + 1} clicked.")  # Print checkbox index
-
     print("Selected up to 50 checkboxes.")
 
     # Wait for the 'Apply All' button to become clickable
     apply_all_button = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[text()='Apply All']")
+        EC.element_to_be_clickable((By.XPATH, "//button[text()='Apply All']"))
     )
+    driver.execute_script("arguments[0].scrollIntoView();", apply_all_button)  # Scroll into view
     driver.execute_script("arguments[0].click();", apply_all_button)
     print("Applied to all jobs.")
 except TimeoutException:
