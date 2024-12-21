@@ -44,13 +44,12 @@ password_field.send_keys(Keys.RETURN)
 
 # Wait for the main page to load after login
 time.sleep(5)
-
 # Hover over 'Backend Developer' and click 'Django'
 try:
     backend_developer_link = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '/c/backend-developer-jobs.html')]")
-    )
+        EC.presence_of_element_located((By.XPATH, "//a[contains(@href, '/c/backend-developer-jobs.html')]"))
     # Hover over 'Backend Developer'
+    )
     actions = ActionChains(driver)
     actions.move_to_element(backend_developer_link).perform()
     print("Hovered over 'Backend Developer'.")
@@ -58,7 +57,7 @@ try:
 
     # Click 'Django' link
     django_link = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//a[contains(@href, '/k/django-jobs.html')]")
+        EC.element_to_be_clickable((By.XPATH, "//a[contains(@href, '/k/django-jobs.html')]"))
     )
     django_link.click()
     print("Navigated to Django jobs.")
@@ -69,13 +68,13 @@ except TimeoutException:
 # Tap on 'Any Exp. Level' dropdown and select '1 - 3 yrs'
 try:
     dropdown_parent = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//div[@class='sc-jlyJG eMQnym']")
+        EC.element_to_be_clickable((By.XPATH, "//div[@class='sc-jlyJG eMQnym']"))
     )
     dropdown_parent.click()
     time.sleep(1)
 
     zero_one_year_option = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//li[@value='1 - 3 yrs']")
+        EC.element_to_be_clickable((By.XPATH, "//li[@value='1 - 3 yrs']"))
     )
     zero_one_year_option.click()
     print("Experience level '1 - 3 yrs' selected.")
@@ -85,7 +84,7 @@ except TimeoutException:
 # Click the 'Apply' button
 try:
     apply_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[@value='Filter' and text()='Apply']")
+        EC.element_to_be_clickable((By.XPATH, "//button[@value='Filter' and text()='Apply']"))
     ) 
     apply_button.click()
     print("Filters applied successfully.")
@@ -112,7 +111,7 @@ try:
 
     # Wait for the 'Apply All' button to become clickable
     apply_all_button = WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[text()='Apply All']")
+        EC.element_to_be_clickable((By.XPATH, "//button[text()='Apply All']"))
     )
     driver.execute_script("arguments[0].click();", apply_all_button)
     print("Applied to all jobs.")
