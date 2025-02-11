@@ -112,7 +112,7 @@ except TimeoutException:
 try:
     items = driver.find_elements(By.XPATH, '//input[@type="checkbox"]')
     for index, item in enumerate(items):
-        if index < 50:
+        if index < 100:
             driver.execute_script("arguments[0].scrollIntoView();", item)  # Scroll into view
             driver.execute_script("arguments[0].click();", item)  # Click via JavaScript
     print("Selected up to 50 checkboxes.")

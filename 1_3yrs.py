@@ -68,13 +68,19 @@ try:
     apply_button.click()
     print("Filters applied successfully.")
     time.sleep(5)  # Wait for the page to reload or update filters
+
+    # Scroll down 15 times with an interval of 2 seconds
+    for _ in range(15):
+        driver.execute_script("window.scrollBy(0, window.innerHeight);")  # Scroll down by one viewport height
+        print("Scrolled down.")
+        time.sleep(2)
 except TimeoutException:
     print("Failed to click the 'Apply' button.")
 
 # Select up to 50 items and click 'Apply All'
 items = driver.find_elements(By.XPATH, '//input[@type="checkbox"]')
 for index, item in enumerate(items):
-    if index < 50:
+    if index < 100:
         driver.execute_script("arguments[0].scrollIntoView();", item)  # Scroll into view
         driver.execute_script("arguments[0].click();", item)  # Click via JavaScript
 

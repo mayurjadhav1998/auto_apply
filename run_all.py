@@ -19,7 +19,7 @@ commands = [
     "python java_0_1yrs.py",
     "python java_1_3yrs.py",
     "python run_all.py"
-    
+
 ]
 
 for cmd in commands:
